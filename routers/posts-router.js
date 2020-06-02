@@ -57,12 +57,12 @@ router.post("/", (req, res) => {
 
 
 router.delete("/:id", (req, res) => {
-  Hubs.remove(req.params.id)
+  Posts.remove(req.params.id)
     .then(count => {
       if (count > 0) {
-        res.status(200).json({ message: "The hub has been nuked" });
+        res.status(200).json({ message: "The post has been nuked" });
       } else {
-        res.status(404).json({ message: "The hub could not be found" });
+        res.status(404).json({ message: "The post could not be found" });
       }
     })
     .catch(error => {
@@ -95,28 +95,3 @@ router.delete("/:id", (req, res) => {
 
 module.exports = router;
 
-// router.post("/:id/comments", (req, res) => {
-//   const id = req.params.id;
-//   if (req.body.text === undefined) {
-//     res.status(400).json({
-//       errorMessage: "Please provide text for the comment.",
-//     });
-//   }
-//   db.findCommentById(id)
-//     .then((comments) => {
-//       db.insertComment(comment);
-//       if (comments) {
-//         res.status(201).json(comments);
-//       } else {
-//         res
-//           .status(404)
-//           .json({ message: "The post with the specified ID does not exist." });
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: "There was an error while saving the comment to the database",
-//       });
-//     });
-// });
